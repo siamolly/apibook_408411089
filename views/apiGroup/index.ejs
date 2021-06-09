@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>Groups</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container" style="margin-top: 50px">
+      <div class="card">
+        <div class="card-header">
+          <ul class="nav nav-pills w-100">
+            <li class="nav-pill active">
+              <a class="nav-link">Groups</a>
+            </li>
+            <li class="nav-pill ml-auto">
+              <a class="nav-link active" href="/group/add">Add Group</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <% if(data.length) { %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Group</th>
+                <th scope="col">Company</th>
+                <th scope="col">Year</th>
+                <th width="200px">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% for(var i = 0; i< data.length; i++) { %>
+              <tr>
+                <th scope="row"><%= (i+1) %></th>
+                <td><%= data[i].group%></td>
+                <td><%= data[i].company%></td>
+                <td><%= data[i].time%></td>
+                <td>
+                  <a
+                    class="btn btn-success edit"
+                    href="/group/edit/<%=data[i].id%>"
+                    >Edit</a
+                  >
+                  <a
+                    class="btn btn-danger delete"
+                    onclick="return alert('Are You sure?')"
+                    href="/group/delete/<%=data[i].id%>"
+                    >Delete</a
+                  >
+                </td>
+              </tr>
+              <% } %>
+            </tbody>
+          </table>
+          <% } %>
+
+          <!-- if result is empty -->
+          <% if(!data.length) { %>
+          <p class="text-center">No group found!</p>
+          <% } %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
